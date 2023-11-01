@@ -24,7 +24,7 @@ const ChatList: React.FC<{ chatItems: { title: string; chatId: string; lastChat:
         <div style={{ textAlign: 'left', marginLeft: '350px' }}>
             {groupByDate.lastDay && (
                 <>
-                    <h2 style={{ marginLeft: '20px' }}>지난 1일</h2>
+                    <p style={{ marginLeft: '20px' }}>지난 1일</p>
 
                     {groupByDate.lastDay.map((chat) => (
                         <li key={chat.chatId}>{chat.title}</li>
@@ -33,7 +33,7 @@ const ChatList: React.FC<{ chatItems: { title: string; chatId: string; lastChat:
             )}
             {groupByDate.lastWeek && (
                 <>
-                    <h2 style={{ marginLeft: '20px' }}>지난 7일</h2>
+                    <p style={{ marginLeft: '20px' }}>지난 7일</p>
 
                     {groupByDate.lastWeek.map((chat) => (
                         <li key={chat.chatId}>{chat.title}</li>
@@ -42,7 +42,7 @@ const ChatList: React.FC<{ chatItems: { title: string; chatId: string; lastChat:
             )}
             {groupByDate.lastMonth && (
                 <>
-                    <h2 style={{ marginLeft: '20px' }}>지난 30일</h2>
+                    <p style={{ marginLeft: '20px' }}>지난 30일</p>
 
                     {groupByDate.lastMonth.map((chat) => (
                         <li key={chat.chatId}>{chat.title}</li>

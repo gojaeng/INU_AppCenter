@@ -20,7 +20,10 @@ const NewChat = styled.button`
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 `;
-
+const ChatListContainer = styled.div`
+    margin-top: 20px;
+    width: 20vh;
+`;
 function App() {
     const Image = '/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg';
     const setting = Icons.setting;
@@ -53,18 +56,18 @@ function App() {
     ];
 
     return (
-        <>
-            <div className="App">
-                <ChatList chatItems={chatItems} />
-            </div>
+        <div className="App">
             <Side>
                 <h3>채팅</h3>
                 <NewChat>{add}</NewChat>
                 <br></br>
+                <ChatListContainer>
+                    <ChatList chatItems={chatItems} />
+                </ChatListContainer>
                 <img src={Image} alt="Profile" style={{ width: '30px' }} />
                 안녕하세요
             </Side>
-        </>
+        </div>
     );
 }
 
