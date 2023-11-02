@@ -16,6 +16,8 @@ const Side = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 const NewChat = styled.button`
     width: 150px;
@@ -25,6 +27,9 @@ const NewChat = styled.button`
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     cursor: pointer;
+    &: hover {
+        background-color: #343540;
+    }
 `;
 const Sidebar = styled.button`
     width: 40px;
@@ -34,6 +39,9 @@ const Sidebar = styled.button`
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     cursor: pointer;
+    &: hover {
+        background-color: #343540;
+    }
 `;
 const Profile = styled.div`
     height: 60px;
@@ -42,8 +50,12 @@ const Profile = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 20px;
+    padding: 5px;
     cursor: pointer;
+    &: hover {
+        background-color: #343540;
+    }
+    border-radius: 10px;
 `;
 const More = styled.div`
     display: flex;
@@ -66,6 +78,16 @@ const Detail = styled.div`
     margin-left: 8px;
     padding: 5px;
 `;
+const DetailItem = styled.div`
+    width: 100%;
+    height: 50%
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    &:hover {
+        background-color: #343540;
+    }
+`;
 
 function App() {
     const Image = '/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg';
@@ -76,6 +98,7 @@ function App() {
     const logout = Icons.logout;
     const more = Icons.more;
 
+    const [isClick, setIsClick] = useState(false);
     const [chatItems, setChatItems] = useState([
         {
             title: 'react에서 list 렌더링 하는 법',
@@ -106,7 +129,9 @@ function App() {
         };
         setChatItems((prevchatItems) => [newchat, ...prevchatItems]);
     };
-    const handleDetail = () => {};
+    const handleDetail = () => {
+        setIsClick((prevIsClick) => !prevIsClick);
+    };
     return (
         <div className="App">
             <Side>
@@ -120,10 +145,12 @@ function App() {
                 </div>
 
                 <div>
-                    <Detail>
-                        <div>&nbsp;{setting} 설정</div>
-                        <div>&nbsp;{logout} 로그아웃</div>
-                    </Detail>
+                    {isClick && (
+                        <Detail>
+                            <DetailItem>&nbsp;{setting} 설정</DetailItem>
+                            <DetailItem>&nbsp;{logout} 로그아웃</DetailItem>
+                        </Detail>
+                    )}
                     <hr style={{ border: '1px solid #8282A0' }} />
                     <Profile onClick={handleDetail}>
                         <br />
