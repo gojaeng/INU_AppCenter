@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Icons } from './Icons';
 import styled from 'styled-components';
 import ChatList from './ChatList';
+import { useState } from 'react';
 
 const Side = styled.div`
     width: 23vh;
@@ -58,7 +59,8 @@ function App() {
     const chat = Icons.chat;
     const logout = Icons.logout;
     const more = Icons.more;
-    const chatItems = [
+
+    const [chatItems, setChatItems] = useState([
         {
             title: 'react에서 list 렌더링 하는 법',
             chatId: '3',
@@ -79,7 +81,15 @@ function App() {
             chatId: '0',
             lastChat: new Date().getTime() - 3600 * 24 * 9 * 1000,
         },
-    ];
+    ]);
+    const Addchat = async () => {
+        const newchat = {
+            title: '새로운 채팅',
+            chatId: chatItems.length.toString(),
+            lastChat: new Date().getTime(),
+        };
+        setChatItems((prevchatItems) => [newchat, ...prevchatItems]);
+    };
 
     return (
         <div className="App">
@@ -87,7 +97,7 @@ function App() {
                 <div>
                     <h3>채팅</h3>
                     <div>
-                        <NewChat>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
+                        <NewChat onClick={Addchat}>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
                     </div>
                     <br />
                     <ChatList chatItems={chatItems} />
@@ -98,7 +108,7 @@ function App() {
                     <Profile>
                         <br />
                         <img src={Image} alt="Profile" style={{ width: '30px' }} />
-                        고재현
+                        &nbsp;고재현
                         <More>{more}</More>
                     </Profile>
                 </div>
