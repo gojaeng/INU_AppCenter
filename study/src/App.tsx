@@ -24,6 +24,7 @@ const NewChat = styled.button`
     color: #ececf1;
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
+    cursor: pointer;
 `;
 const Sidebar = styled.button`
     width: 40px;
@@ -32,6 +33,7 @@ const Sidebar = styled.button`
     color: #ececf1;
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
+    cursor: pointer;
 `;
 const Profile = styled.div`
     height: 60px;
@@ -41,6 +43,7 @@ const Profile = styled.div`
     flex-direction: row;
     align-items: center;
     margin-left: 20px;
+    cursor: pointer;
 `;
 const More = styled.div`
     display: flex;
