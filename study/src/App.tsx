@@ -53,6 +53,19 @@ const More = styled.div`
     margin-right: 30px;
     color: #8282a0;
 `;
+const Detail = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: #ececf1;
+    align-items: start;
+    height: 75px;
+    justify-content: space-evenly;
+    width: 20vh;
+    border-radius: 5px;
+    margin-left: 8px;
+    padding: 5px;
+`;
 
 function App() {
     const Image = '/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg';
@@ -85,7 +98,7 @@ function App() {
             lastChat: new Date().getTime() - 3600 * 24 * 9 * 1000,
         },
     ]);
-    const Addchat = async () => {
+    const handleAddchat = () => {
         const newchat = {
             title: '새로운 채팅',
             chatId: chatItems.length.toString(),
@@ -93,22 +106,26 @@ function App() {
         };
         setChatItems((prevchatItems) => [newchat, ...prevchatItems]);
     };
-
+    const handleDetail = () => {};
     return (
         <div className="App">
             <Side>
                 <div>
                     <h3>채팅</h3>
                     <div>
-                        <NewChat onClick={Addchat}>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
+                        <NewChat onClick={handleAddchat}>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
                     </div>
                     <br />
                     <ChatList chatItems={chatItems} />
                 </div>
 
                 <div>
+                    <Detail>
+                        <div>&nbsp;{setting} 설정</div>
+                        <div>&nbsp;{logout} 로그아웃</div>
+                    </Detail>
                     <hr style={{ border: '1px solid #8282A0' }} />
-                    <Profile>
+                    <Profile onClick={handleDetail}>
                         <br />
                         <img src={Image} alt="Profile" style={{ width: '30px' }} />
                         &nbsp;고재현
