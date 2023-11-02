@@ -11,19 +11,45 @@ const Side = styled.div`
     background-color: #202123;
     color: #ececf1;
     border-color: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 const NewChat = styled.button`
     width: 150px;
-    height: 50px;
+    height: 40px;
     background-color: #202123;
     color: #ececf1;
     border-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 `;
-const ChatListContainer = styled.div`
-    margin-top: 20px;
-    width: 20vh;
+const Sidebar = styled.button`
+    width: 40px;
+    height: 40px;
+    background-color: #202123;
+    color: #ececf1;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 `;
+const Profile = styled.div`
+    height: 60px;
+    background-color: #202123;
+    color: #ececf1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+`;
+const More = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    margin-left: auto;
+    margin-right: 30px;
+    color: #8282a0;
+`;
+
 function App() {
     const Image = '/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg';
     const setting = Icons.setting;
@@ -58,14 +84,24 @@ function App() {
     return (
         <div className="App">
             <Side>
-                <h3>채팅</h3>
-                <NewChat>{add}</NewChat>
-                <br></br>
-                <ChatListContainer>
+                <div>
+                    <h3>채팅</h3>
+                    <div>
+                        <NewChat>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
+                    </div>
+                    <br />
                     <ChatList chatItems={chatItems} />
-                </ChatListContainer>
-                <img src={Image} alt="Profile" style={{ width: '30px' }} />
-                안녕하세요
+                </div>
+
+                <div>
+                    <hr style={{ border: '1px solid #8282A0' }} />
+                    <Profile>
+                        <br />
+                        <img src={Image} alt="Profile" style={{ width: '30px' }} />
+                        고재현
+                        <More>{more}</More>
+                    </Profile>
+                </div>
             </Side>
         </div>
     );
