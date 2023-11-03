@@ -19,7 +19,7 @@ const Side = styled.div`
     white-space: nowrap;
 `;
 const ChatItemContainer = styled.div`
-    -webkit-mask-image: linear-gradient(90deg, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
     mask-image: linear-gradient(90deg, #000 90%, transparent);
     cursor: pointer;
 `;
@@ -101,11 +101,11 @@ function App() {
     const setting = Icons.setting;
     const sidebar = Icons.sidebar;
     const add = Icons.add;
-    const chat = Icons.chat;
     const logout = Icons.logout;
     const more = Icons.more;
 
     const [isClick, setIsClick] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [chatItems, setChatItems] = useState([
         {
@@ -140,36 +140,48 @@ function App() {
     const handleDetail = () => {
         setIsClick((prevIsClick) => !prevIsClick);
     };
+    const handleSidebar = () => {
+        setIsOpen((prevIsOpne) => !prevIsOpne);
+    };
     return (
         <div className="App">
-            <Side>
-                <div>
-                    <h3>채팅</h3>
+            {isOpen && (
+                <Side>
                     <div>
-                        <NewChat onClick={handleAddchat}>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
-                    </div>
-                    <br />
-                    <ChatItemContainer>
-                        <ChatList chatItems={chatItems} />
-                    </ChatItemContainer>
-                </div>
-
-                <div>
-                    {isClick && (
-                        <Detail>
-                            <DetailItem>&nbsp;{setting} 설정</DetailItem>
-                            <DetailItem>&nbsp;{logout} 로그아웃</DetailItem>
-                        </Detail>
-                    )}
-                    <hr style={{ border: '1px solid #8282A0' }} />
-                    <Profile onClick={handleDetail} isClick={isClick}>
+                        <h3 style={{ textAlign: 'start', marginLeft: '15px' }}>채팅</h3>
+                        <div>
+                            <NewChat onClick={handleAddchat}>{add} 새로운 채팅</NewChat>
+                            <Sidebar onClick={handleSidebar}>{sidebar}</Sidebar>
+                        </div>
                         <br />
-                        <img src={Image} alt="Profile" style={{ width: '30px' }} />
-                        &nbsp;고재현
-                        <More>{more}</More>
-                    </Profile>
+                        <ChatItemContainer>
+                            <ChatList chatItems={chatItems} />
+                        </ChatItemContainer>
+                    </div>
+                    <div>
+                        {isClick && (
+                            <Detail>
+                                <DetailItem>&nbsp;{setting} 설정</DetailItem>
+                                <DetailItem>&nbsp;{logout} 로그아웃</DetailItem>
+                            </Detail>
+                        )}
+                        <hr style={{ border: '1px solid #8282A0' }} />
+                        <Profile onClick={handleDetail} isClick={isClick}>
+                            <br />
+                            <img src={Image} alt="Profile" style={{ width: '30px' }} />
+                            &nbsp;고재현
+                            <More>{more}</More>
+                        </Profile>
+                    </div>
+                </Side>
+            )}
+            {!isOpen && (
+                <div>
+                    <Sidebar onClick={handleSidebar} style={{ float: 'left', marginLeft: '20px' }}>
+                        {sidebar}
+                    </Sidebar>
                 </div>
-            </Side>
+            )}
         </div>
     );
 }
