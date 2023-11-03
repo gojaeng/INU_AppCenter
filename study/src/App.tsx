@@ -43,9 +43,9 @@ const Sidebar = styled.button`
         background-color: #343540;
     }
 `;
-const Profile = styled.div`
+const Profile = styled.div<{ isClick: boolean }>`
     height: 60px;
-    background-color: #202123;
+    background-color: ${(props) => (props.isClick ? '#343540' : 'black')};
     color: #ececf1;
     display: flex;
     flex-direction: row;
@@ -77,6 +77,7 @@ const Detail = styled.div`
     border-radius: 5px;
     margin-left: 8px;
     padding: 5px;
+    flex-grow: 1;
 `;
 const DetailItem = styled.div`
     width: 100%;
@@ -84,6 +85,8 @@ const DetailItem = styled.div`
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: flex;
+    align-items : center;
+    flex:1;
     &:hover {
         background-color: #343540;
     }
@@ -99,6 +102,7 @@ function App() {
     const more = Icons.more;
 
     const [isClick, setIsClick] = useState(false);
+
     const [chatItems, setChatItems] = useState([
         {
             title: 'react에서 list 렌더링 하는 법',
@@ -152,7 +156,7 @@ function App() {
                         </Detail>
                     )}
                     <hr style={{ border: '1px solid #8282A0' }} />
-                    <Profile onClick={handleDetail}>
+                    <Profile onClick={handleDetail} isClick={isClick}>
                         <br />
                         <img src={Image} alt="Profile" style={{ width: '30px' }} />
                         &nbsp;고재현
