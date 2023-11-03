@@ -17,7 +17,11 @@ const Side = styled.div`
     flex-direction: column;
     justify-content: space-between;
     white-space: nowrap;
-    overflow: hidden;
+`;
+const ChatItemContainer = styled.div`
+    -webkit-mask-image: linear-gradient(90deg, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, #000 90%, transparent);
+    cursor: pointer;
 `;
 const NewChat = styled.button`
     width: 150px;
@@ -145,7 +149,9 @@ function App() {
                         <NewChat onClick={handleAddchat}>{add} 새로운 채팅</NewChat> <Sidebar>{sidebar}</Sidebar>
                     </div>
                     <br />
-                    <ChatList chatItems={chatItems} />
+                    <ChatItemContainer>
+                        <ChatList chatItems={chatItems} />
+                    </ChatItemContainer>
                 </div>
 
                 <div>
